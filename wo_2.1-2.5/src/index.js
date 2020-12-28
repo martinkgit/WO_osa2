@@ -1,116 +1,91 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import Course from './components/Course'
  
 
-const Part = ({part}) => {
-  return(
-    <div>
-    <p>{part.name}: {part.exercises}</p>
-    </div>
-  )
-}
 
 
-const Header = ({course}) =>{
 
-  return(
-  <div>
-    <h1>
-       {course.name}
-    </h1>
-  </div>
-  )
-}
 
-const Reducer = (props) => { 
-  const {parts} = props
-  
+
+
+const Courses = ({courses}) =>{
+
+  //const [courses] = props
+  //const course = courses.course
 
   return(
     <div>
-    <ul>
-    <p> Total of {parts.map(part => 
-part.exercises).reduce((sum, val) => sum+val)} exercises </p>
-    </ul>
-    </div>
-    
-  )
-  
-}
-
-
-
-
-
-
-
-const Course = (props) =>{
-
-
-const {course} = props
-
-const parts = course.parts
-
-
-  return(
-    <div>
-
-      <Header course = {course} />
-
+      <h1>Web developement curriculum</h1>
       <ul>
-  {parts.map(part => 
-    <Part key = {part.id} part = {part} /> 
-  )}
-</ul>
- <Reducer parts = {parts}></Reducer>
-</div>
+        <p>
+          {courses.map(courses =>
+          <Course key = {courses.id} course = {courses}/>
+            )}
+        </p>
+      </ul>
+    </div>
   )
+
 }
+
+
+
+
+
+
+
   
 
-
-const Content = (props) => {
-  return(
-  <div>
-    <Part part= {props.part1} exercises= {props.exercises1} ></Part>
-    <Part part= {props.part2} exercises= {props.exercises2} ></Part>
-    <Part part= {props.part3} exercises= {props.exercises3}></Part>
-  </div>
-  )
-}
 
 
 
 
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    id: 1,
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10,
-        id: 1
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7,
-        id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3
-      },
-      {
-        name: 'Reducer hell',
-        exercises: 200,
-        id: 4
-      }
-
-    ]
-  }
+  const courses = [
+    {
+      name: 'Half Stack application development',
+      id: 1,
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4
+        }
+      ]
+    }, 
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2
+        }
+      ]
+    }
+  ]
 
 
   
@@ -119,7 +94,7 @@ const App = () => {
   return (  
     <div>
      
-      <Course course = {course}></Course>
+      <Courses courses = {courses}></Courses>
     
     </div>
   )
