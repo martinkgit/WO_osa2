@@ -32,15 +32,6 @@ const Courses = ({courses}) =>{
 
 
 
-
-
-
-  
-
-
-
-
-
 const App = () => {
   const courses = [
     {

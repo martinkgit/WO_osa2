@@ -1,4 +1,9 @@
 import React, { useState } from 'react'
+import Person from './components/Person'
+import Render from './components/Render'
+import Input from './components/Input'
+
+
 
 const App = () => {
   const [ persons, setPersons] = useState([
@@ -9,11 +14,6 @@ const App = () => {
   const [ showAll, setShowAll] = useState(true)
   const [newSearch, setNewSearch] = useState('')
 
-  const Render = () => {
-    
-  }
-
-const filter = showAll ? persons : persons.filter(person=>person.name.toLowerCase.includes(newSearch))
  
 
   const handleNameChange = (event) => {
@@ -29,6 +29,12 @@ const filter = showAll ? persons : persons.filter(person=>person.name.toLowerCas
   const handleSearchChange = (event) => {
     console.log(event.target.value)
     setNewSearch(event.target.value)
+    if(newSearch !== null){
+    setShowAll(false)
+    }
+    else{
+      setShowAll(true)
+    }
   }
 
   
@@ -58,11 +64,7 @@ const filter = showAll ? persons : persons.filter(person=>person.name.toLowerCas
       <h1>Phonebook</h1>
       
       <div>
-          search:    <input 
-          value = {newSearch} 
-          onChange={handleSearchChange}>
-          </input>
-          <button onClick ={() => setShowAll(!showAll)}>search{filter}</button>
+        <Input text = 'search' value= {newSearch} event = {handleSearchChange}/>
           </div>
      
       <form onSubmit={addPerson} >
@@ -70,15 +72,10 @@ const filter = showAll ? persons : persons.filter(person=>person.name.toLowerCas
           <h3>Add a new:</h3>
         </div>
         <div>
-          name:    <input 
-          value = {newName} 
-          onChange={handleNameChange}>
-          </input>
+        <Input text = 'name' value= {newName} event = {handleNameChange}/>
           </div>
           <div>
-          number: <input 
-          value = {newNumber} 
-          onChange={handleNumberChange}></input>  
+          <Input text = 'number' value= {newNumber} event = {handleNumberChange}/>
           </div>
           <div>
           <button type="submit">add</button>
@@ -86,11 +83,13 @@ const filter = showAll ? persons : persons.filter(person=>person.name.toLowerCas
       </form>
       <h2>Numbers</h2>
       <ul>
-      
+      <Render persons = {persons} showAll = {showAll} newSearch={newSearch} />
       </ul>
     </div>
-  )
-
+  ) 
 }
+
+
+
 
 export default App
