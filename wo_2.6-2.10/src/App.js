@@ -143,7 +143,7 @@ const App = () => {
           <h3>Add a new:</h3>
         </div>
         <div>
-        <Input text = 'name' value= {newName} event = {handleNameChange}/>
+        <Input text =   'name' value= {newName} event = {handleNameChange}/>
           </div>
           <div>
           <Input text = 'number' value= {newNumber} event = {handleNumberChange}/>
